@@ -36,20 +36,49 @@ namespace FixOriginToEaApp
         {
             try
             {
-                if (Process.GetProcessesByName("Origin").Length <= 0)
+                var pArray = Process.GetProcessesByName("Origin");
+                if (pArray.Length <= 0)
                 {
-                    MessageBox.Show("请先启动 Origin 客户端", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("请先启动《Origin》客户端", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
 
+                // 屏蔽更新
+                MakeOrigin(pArray);
+                // 修改XML
                 ChangeXML();
-                MakeOrigin();
 
-                MessageBox.Show("修复完成，请重启 Origin 客户端", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("修复完成，请重启《Origin》客户端", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"发生了未知的异常，查看异常提示以获取更多信息\n\n{ex.Message}", "异常", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MakeOrigin(Process[] pArray)
+        {
+            var originPath = pArray[0].MainModule.FileName;
+            var originDir = Path.GetDirectoryName(originPath);
+
+            // 强制结束Origin客户端
+            foreach (var process in pArray)
+                process.Kill();
+
+            // 创建 OriginThinSetupInternal 文件夹
+            Directory.CreateDirectory(Path.Combine(originDir, "OriginThinSetupInternal"));
+
+            // 修改 OriginThinSetupInternal.exe 后缀名
+            var exePath = Path.Combine(originDir, "OriginThinSetupInternal.exe");
+            var exeBakPath = Path.Combine(originDir, "OriginThinSetupInternal.exe.bak");
+
+            if (File.Exists(exePath))
+            {
+                // 先删除旧版本备份
+                if (File.Exists(exeBakPath))
+                    File.Delete(exeBakPath);
+                // 重命名
+                File.Move(exePath, exeBakPath);
             }
         }
 
@@ -80,29 +109,6 @@ namespace FixOriginToEaApp
                 root.AppendChild(newNode);
 
                 xml.Save(path);
-            }
-        }
-
-        private void MakeOrigin()
-        {
-            var pArray = Process.GetProcessesByName("Origin");
-            if (pArray.Length > 0)
-            {
-                var process = pArray[0];
-
-                var originPath = process.MainModule.FileName;
-                var originDir = Path.GetDirectoryName(originPath);
-
-                // 创建 OriginThinSetupInternal 文件夹
-                Directory.CreateDirectory(Path.Combine(originDir, "OriginThinSetupInternal"));
-
-                // 修改 OriginThinSetupInternal.exe 后缀名
-                var exePath = Path.Combine(originDir, "OriginThinSetupInternal.exe");
-                var fileInfo = new FileInfo(exePath);
-                if (fileInfo.Exists)
-                {
-                    fileInfo.MoveTo(Path.Combine(originDir, "OriginThinSetupInternal.exe.bak"));
-                }
             }
         }
     }

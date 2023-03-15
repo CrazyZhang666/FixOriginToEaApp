@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace FixOriginToEaApp
 {
@@ -36,15 +37,8 @@ namespace FixOriginToEaApp
         {
             try
             {
-                var pArray = Process.GetProcessesByName("Origin");
-                if (pArray.Length <= 0)
-                {
-                    MessageBox.Show("请先启动《Origin》客户端", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
-
                 // 屏蔽更新
-                MakeOrigin(pArray);
+                MakeOrigin();
                 // 修改XML
                 ChangeXML();
 
@@ -56,14 +50,12 @@ namespace FixOriginToEaApp
             }
         }
 
-        private void MakeOrigin(Process[] pArray)
+        private async void MakeOrigin()
         {
+            var pArray = Process.GetProcessesByName("OriginWebHelperService");
+
             var originPath = pArray[0].MainModule.FileName;
             var originDir = Path.GetDirectoryName(originPath);
-
-            // 强制结束Origin客户端
-            foreach (var process in pArray)
-                process.Kill();
 
             // 创建 OriginThinSetupInternal 文件夹
             Directory.CreateDirectory(Path.Combine(originDir, "OriginThinSetupInternal"));
@@ -77,6 +69,9 @@ namespace FixOriginToEaApp
                 // 先删除旧版本备份
                 if (File.Exists(exeBakPath))
                     File.Delete(exeBakPath);
+
+                await Task.Delay(500);
+
                 // 重命名
                 File.Move(exePath, exeBakPath);
             }

@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:FixOriginToEaApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="一键修复 Orign 强制安装 EA APP"
     Width="600"
@@ -36,8 +35,8 @@
                     Origin客户端下载
                 </Hyperlink>
             </TextBlock>
-            <TextBlock Text="第二步：打开《Origin》程序，然后点击《一键修复》按钮" />
-            <TextBlock Text="第三步：重新启动《Origin》程序即可" />
+            <TextBlock Text="第二步：退出《Origin》程序，然后点击《一键修复》按钮" />
+            <TextBlock Text="第三步：启动《Origin》程序即可" />
         </StackPanel>
         <!--  ///////////////////  -->
         <StackPanel Grid.Row="2" Margin="0,10,0,0">

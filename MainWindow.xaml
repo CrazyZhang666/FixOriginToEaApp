@@ -1,0 +1,17 @@
+﻿<Window
+    x:Class="FixOriginToEaApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:FixOriginToEaApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="一键修复 Orign 强制安装 EA APP"
+    Width="650"
+    Height="400"
+    ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Grid />
+
+</Window>

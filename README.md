@@ -1,4 +1,4 @@
-# 一键修复 Orign 强制安装 EA APP
+# 一键修复 Origin 强制安装 EA APP
 
 覆盖安装 v10.5.118.52644版本《Origin》程序
 

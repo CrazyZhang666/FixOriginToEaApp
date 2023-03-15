@@ -4,4 +4,8 @@
 
 https://download.dm.origin.com/origin/live/OriginSetup.exe
 
-![image](https://user-images.githubusercontent.com/28080853/225231472-a389dc89-d938-49c3-aae3-40bbeae22cee.png)
+## 所需工具下载
+
+https://www.123pan.com/s/QEorVv-Gjzv3.html
+
+![image](https://user-images.githubusercontent.com/28080853/225245713-03bdae1d-1d1a-4ef9-840f-ec081448e6d8.png)

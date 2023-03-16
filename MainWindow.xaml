@@ -30,12 +30,12 @@
                 </Style>
             </StackPanel.Resources>
             <TextBlock>
-                <Run>第一步：覆盖安装 v10.5.118.52644版本《Origin》程序</Run>
+                <Run>第一步：重新安装或覆盖安装 v10.5.118.52644版本《Origin》程序</Run>
                 <Hyperlink NavigateUri="https://download.dm.origin.com/origin/live/OriginSetup.exe" RequestNavigate="Hyperlink_RequestNavigate">
                     Origin客户端下载
                 </Hyperlink>
             </TextBlock>
-            <TextBlock Text="第二步：退出《Origin》程序，然后点击《一键修复》按钮" />
+            <TextBlock Text="第二步：安装《Origin》完成后，点击《一键修复》按钮" />
             <TextBlock Text="第三步：启动《Origin》程序即可" />
         </StackPanel>
         <!--  ///////////////////  -->
@@ -44,7 +44,7 @@
                 x:Name="Button_OneClickFix"
                 Padding="10"
                 Click="Button_OneClickFix_Click"
-                Content="一键修复 Origin 强制安装 EA app" />
+                Content="一键修复" />
             <DockPanel Margin="0,10,0,0">
                 <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                     <TextBlock>
@@ -55,6 +55,11 @@
                 </StackPanel>
                 <!--  /////////////  -->
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="10,0,0,0">
+                        <Hyperlink NavigateUri="https://www.123pan.com/s/QEorVv-Gjzv3.html" RequestNavigate="Hyperlink_RequestNavigate">
+                            123网盘
+                        </Hyperlink>
+                    </TextBlock>
                     <TextBlock Margin="10,0,0,0">
                         <Hyperlink NavigateUri="https://github.com/CrazyZhang666/FixOriginToEaApp" RequestNavigate="Hyperlink_RequestNavigate">
                             GitHub

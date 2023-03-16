@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using System.Diagnostics;
 using System.Threading;
 using System.Text;
+using Microsoft.Win32;
 
 namespace FixOriginToEaApp
 {
@@ -21,11 +22,6 @@ namespace FixOriginToEaApp
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -53,9 +49,20 @@ namespace FixOriginToEaApp
 
         private void MakeOrigin()
         {
-            var pArray = Process.GetProcessesByName("OriginWebHelperService");
+            // 通过注册表拿到 Origin 路径
+            var hklm = Registry.LocalMachine;
+            var hkSoftWare = hklm.OpenSubKey(@"SOFTWARE\WOW6432Node\Origin", false);
+            var originPath = hkSoftWare.GetValue("ClientPath").ToString();
 
-            var originPath = pArray[0].MainModule.FileName;
+            if (File.Exists(originPath))
+            {
+                // 杀掉 Origin 进程
+                var pArray = Process.GetProcessesByName("Origin");
+                foreach (var process in pArray)
+                    process.Kill();
+            }
+
+            // 获取 Origin 所在文件夹
             var originDir = Path.GetDirectoryName(originPath);
 
             // 创建 OriginThinSetupInternal 文件夹

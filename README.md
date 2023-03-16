@@ -8,4 +8,4 @@ https://download.dm.origin.com/origin/live/OriginSetup.exe
 
 https://www.123pan.com/s/QEorVv-Gjzv3.html
 
-![image](https://user-images.githubusercontent.com/28080853/225245713-03bdae1d-1d1a-4ef9-840f-ec081448e6d8.png)
+![image](https://user-images.githubusercontent.com/28080853/225519172-16bbd465-a8aa-4d35-a518-9ee2c2087a6d.png)

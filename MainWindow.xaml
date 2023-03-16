@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="一键修复 Orign 强制安装 EA app"
+    Title="一键修复 Origin 强制安装 EA app"
     Width="600"
     Height="350"
     ResizeMode="CanMinimize"
@@ -44,18 +44,24 @@
                 x:Name="Button_OneClickFix"
                 Padding="10"
                 Click="Button_OneClickFix_Click"
-                Content="一键修复" />
-            <StackPanel
-                Margin="0,10,0,0"
-                HorizontalAlignment="Right"
-                Orientation="Horizontal">
-                <TextBlock />
-                <TextBlock Margin="10,0,0,0">
-                    <Hyperlink NavigateUri="https://github.com/CrazyZhang666/FixOriginToEaApp" RequestNavigate="Hyperlink_RequestNavigate">
-                        GitHub
-                    </Hyperlink>
-                </TextBlock>
-            </StackPanel>
+                Content="一键修复 Origin 强制安装 EA app" />
+            <DockPanel Margin="0,10,0,0">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBlock>
+                        <Hyperlink x:Name="Hyperlink_FixOriginNetWorkBug" Click="Hyperlink_FixOriginNetWorkBug_Click">
+                            点我修复 Origin「呃，發生了些意料之外的事情」
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                <!--  /////////////  -->
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock Margin="10,0,0,0">
+                        <Hyperlink NavigateUri="https://github.com/CrazyZhang666/FixOriginToEaApp" RequestNavigate="Hyperlink_RequestNavigate">
+                            GitHub
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
         </StackPanel>
     </Grid>
 

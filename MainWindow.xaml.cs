@@ -6,7 +6,8 @@ using System.Xml.Linq;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Diagnostics;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Text;
 
 namespace FixOriginToEaApp
 {
@@ -50,7 +51,7 @@ namespace FixOriginToEaApp
             }
         }
 
-        private async void MakeOrigin()
+        private void MakeOrigin()
         {
             var pArray = Process.GetProcessesByName("OriginWebHelperService");
 
@@ -70,7 +71,7 @@ namespace FixOriginToEaApp
                 if (File.Exists(exeBakPath))
                     File.Delete(exeBakPath);
 
-                await Task.Delay(500);
+                Thread.Sleep(500);
 
                 // 重命名
                 File.Move(exePath, exeBakPath);
@@ -105,6 +106,15 @@ namespace FixOriginToEaApp
 
                 xml.Save(path);
             }
+        }
+
+        private void Hyperlink_FixOriginNetWorkBug_Click(object sender, RoutedEventArgs e)
+        {
+            string cmd = "@echo off\r\n@ echo.\r\n@ echo.　=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\r\n@ echo.　　　　　　\r\n@ echo.　「按下任意键开始修复，该修复无需重登 Origin」\r\n@ echo.　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\r\n@ echo.　=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\r\n@ echo.　　　　　　\r\npause\r\ntaskkill /f /im Origin.exe\r\nipconfig /flushdns\r\ndel /f /s /q \"%LOCALAPPDATA%\\Origin\\*.*\" \r\ncls\r\n@ echo.\r\n@ echo.　=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=　　　　　\r\n@ echo.　　　　　　\r\n@ echo.　「修复已完成，Origin 客户端可正常运行」\r\n@ echo.　　　\r\n@ echo.　=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\r\n@ echo.\r\necho. & pause";
+            File.WriteAllText("FixOriginNetWorkBug.bat", cmd, Encoding.GetEncoding("GB2312"));
+
+            if (File.Exists("FixOriginNetWorkBug.bat"))
+                Process.Start("FixOriginNetWorkBug.bat");
         }
     }
 }

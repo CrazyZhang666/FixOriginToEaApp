@@ -39,7 +39,7 @@ namespace FixOriginToEaApp
                 // 修改XML
                 ChangeXML();
 
-                MessageBox.Show("修复完成，请重启《Origin》客户端", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("修复成功，请重新打开《Origin》客户端", "修复成功", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
